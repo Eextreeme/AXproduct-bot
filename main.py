@@ -71,27 +71,26 @@ def callback_message(callback):
     if callback.data == 'pavluk_info':
         bot.send_message(callback.message.chat.id,' <b>Арсен Павлюк🧑‍💻</b>:', parse_mode='HTML' )
         ars = open('/Users/prabwa/Telegram-bots/AXproduct-bot/photos/Pavliuk.jpeg', 'rb')
-        bot.send_photo(callback.message.chat.id, photo = ars)
-        bot.send_message(callback.message.chat.id, 'В нашій команді є Тім Лідер,'
+        bot.send_photo(callback.message.chat.id, photo = ars, caption='В нашій команді є Тім Лідер,'
                                                    '\nЗнає мову C# і Python,'
                                                    ' розуміється в Arduino. Запрограмував прототип проекту'
                                                    '\n<b>Контактна інформація</b>:'
                                                    '\nЕлектронна пошта: arsenii.pavliuk.ir.2023@lpnu.ua',
                                                     parse_mode='HTML',
                                                     )
+
     elif callback.data == 'roman_info':
         bot.send_message(callback.message.chat.id,' <b>Роман Пилипців🧑‍💻</b>:', parse_mode='HTML')
         roma = open('/Users/prabwa/Telegram-bots/AXproduct-bot/photos/roman.jpeg', 'rb')
-        bot.send_photo(callback.message.chat.id, photo = roma)
-        bot.send_message(callback.message.chat.id, 'В нашій команді є Продукт Овнер,'
+        bot.send_photo(callback.message.chat.id, photo = roma, caption='В нашій команді є Продукт Овнер,'
                                                    ' \nДобре знає мову Python, запрограмував цього бота.'
                                                    ' Написав текст до виступу'
                                                    '\n<b>Контактна інформація</b>:'
                                                    '\nтелеграм: @r_pylyptsiv '
                                                    '\nНомер телефону: +380995351702'
                                                    '\nЕлектронна пошта: romkapyl@gmail.com',
-                                                    parse_mode='HTML',
-                                                    )
+                                                    parse_mode='HTML',)
+
     elif callback.data == 'waclaw_info':
         bot.send_message(callback.message.chat.id,' <b>Максим Вацлав💪</b>:', parse_mode='HTML' )
         #ars = open('/Users/prabwa/Telegram-bots/AXproduct-bot/photos/Pavliuk.jpeg', 'rb')
@@ -106,24 +105,23 @@ def callback_message(callback):
     elif callback.data == 'igor_info':
         bot.send_message(callback.message.chat.id,' <b>Ігор Суменков👨‍🎨</b>:', parse_mode='HTML')
         igor = open('/Users/prabwa/Telegram-bots/AXproduct-bot/photos/igor.jpeg', 'rb')
-        bot.send_photo(callback.message.chat.id, photo = igor)
-        bot.send_message(callback.message.chat.id, 'В нашій команді є Дизайнером'
+        bot.send_photo(callback.message.chat.id, photo = igor, caption='В нашій команді є Дизайнером'
                                                    '\nРозробив логотип, Робив презентацію'
                                                    '\n<b>Контактна інформація</b>:'
                                                    '\nтелеграм: @Ihorchu_k '
                                                    '\nНомер телефону: +380634683923  '
                                                     , parse_mode='HTML',
                                                     )
+
     elif callback.data == 'shulak_info':
         bot.send_message(callback.message.chat.id,' <b>Арсен Шулак👨‍🎨</b>:', parse_mode='HTML' )
         ars = open('/Users/prabwa/Telegram-bots/AXproduct-bot/photos/shulak.jpeg', 'rb')
-        bot.send_photo(callback.message.chat.id, photo = ars)
-        bot.send_message(callback.message.chat.id, 'В нашій команді є Аналітиком, '
+        bot.send_photo(callback.message.chat.id, photo = ars, caption='В нашій команді є Аналітиком, '
                                                    '\nРобив презентацію, провів опитування, зробив першу версію макету'
                                                    '\n<b>Контактна інформація</b>:'
                                                    '\nЕлектронна пошта: arsen.shulak.ir.2024@lpnu.ua',
-                                                    parse_mode='HTML',
-                                                    )
+                                                    parse_mode='HTML',)
+
     elif callback.data == 'get_presentation':
         get_presentation(callback.message)
     elif callback.data == 'get_feedback_photo':
@@ -138,10 +136,10 @@ def project_info(message):
     :return: message buttons about the project InSightWindow
     '''
     markup = types.InlineKeyboardMarkup()
-    markup.add(types.InlineKeyboardButton('Отримати Відео тесту прототипу', callback_data='Get_test'))
-    markup.add(types.InlineKeyboardButton('Детальна інформація про проект', callback_data='more_info'))
     markup.add(types.InlineKeyboardButton('Файл презентації', callback_data='get_presentation'))
+    markup.add(types.InlineKeyboardButton('Отримати Відео прототипу', callback_data='Get_test'))
     markup.add(types.InlineKeyboardButton('Отримати результати опитування', callback_data='get_feedback_photo'))
+    markup.add(types.InlineKeyboardButton('Детальна інформація про InSightWindow', callback_data='more_info'))
     bot.reply_to(message, 'Що вас цікавить?', reply_markup=markup)
 
 def get_presentation(message):
@@ -150,10 +148,9 @@ def get_presentation(message):
     :param message:
     :return: opens presetation file
     '''
-    bot.reply_to(message, 'Ось презентація')
     file_path = './AXproduct_presentation.pptx'
     with open(file_path, 'rb') as file:
-        bot.send_document(message.chat.id, file)
+        bot.send_document(message.chat.id, file, caption='Ось презентація')
 
 def get_survey(message):
     '''
@@ -161,10 +158,9 @@ def get_survey(message):
     :param message:
     :return: opens survey file
     '''
-    bot.reply_to(message, 'Ось опитування')
     file_path = '/Users/prabwa/Telegram-bots/AXproduct-bot/photos/survey.png'
     with open(file_path, 'rb') as file:
-        bot.send_photo(message.chat.id, file)
+        bot.send_photo(message.chat.id, file, caption='Ось опитування')
 
 def get_test_video(message):
     pass
