@@ -127,7 +127,12 @@ def callback_message(callback):
     elif callback.data == 'get_feedback_photo':
         get_survey(callback.message)
     elif callback.data == 'more_info':
-        bot.send_message(callback.message.chat.id, 'InSightWindow')
+        bot.send_message(callback.message.chat.id, 'Проект InSightWindow - це інноваційна система регулювання положення вікна'
+                                                   ', яка автоматично регулює вентиляцію, підтримує нормальний рівень кисню в приміщенні'
+                                                   ', захищає його від сирості та попадання туди дощу. Проект використовує датчики для вимірювання '
+                                                   'температури та вологості, сенсором дощу для уникнення води в проиміщенні, '
+                                                   'сигналізацією для захисту та датчиком вуглекислого газу для підвищення '
+                                                   'рівня свіжого повітря в кімнаті, - усе це сприяє покращенню мікроклімату, комфорту та безпеки.')
     elif callback.data == 'Get_test':
         bot.send_message(callback.message.chat.id, 'Зараз буде...')
 def project_info(message):
